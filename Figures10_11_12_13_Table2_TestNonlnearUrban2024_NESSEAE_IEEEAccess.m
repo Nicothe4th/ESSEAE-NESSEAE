@@ -37,17 +37,18 @@ for i=1:N
     hold on;
     plot(M(:,i),'r','LineWidth',4); axis tight;
     ylabel('Normalized intensity')
-    title([labelT(i), cood(i)]);
+    title([labelT(i), cood(i)], 'FontWeight','normal');
 end
 xlabel('Spectral channel');
 
 
 figure;
 for i=1:N
-    subplot(1,N,i);
+    subplot(2,2,i);
     imagesc(reshape(A(i,:),nRow,nCol),[0,1]);
-    title([labelT(i), cood(i)])
+    title([labelT(i), cood(i)], 'FontWeight','normal')
 end
+subplot(2,2,1); colorbar('southoutside')
 %%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -116,7 +117,7 @@ disp('%%%%%%%%%%%%%%%%%')
 disp('NESSEAE');
 index=2;
 IndexUnknown=zeros(2,2+N*(N-1)/2);
-
+%%
 for ii=1:(N-1)
     for jj=ii+1:N
         disp(['Fixed end-members :' num2str(ii) ' and ' num2str(jj)]);
@@ -146,16 +147,16 @@ for ii=1:(N-1)
         EnergyV(index)=norm(V1,'fro')/norm(Z,'fro'); 
         index=index+1;
     
-        if (ii==1 && jj==2) || (ii==2 && jj==3)
+        if (ii==2 && jj==3)
 
             figure;
             subplot(2,1,1)
             plot(M(:,UnknownEM),'linewidth',2); grid on;
-            title(['(a) Ground-truth' cood(UnknownEM(1)) cood(UnknownEM(2))])
+            title(['(a) Ground-truth' cood(UnknownEM(1)) cood(UnknownEM(2))], 'FontWeight','normal')
             axis([1 size(M,1) min([min(M(:)), min(P1(:))]) max([max(M(:)), max(P1(:))])])
             subplot(2,1,2);  
             plot(P1(:,F+1:N),'linewidth',2); grid on;
-            title('(b) Estimated End-members')
+            title('(b) Estimated End-members', 'FontWeight','normal')
             axis([1 size(M,1) min([min(M(:)) min(P1(:))]) max([max(M(:)) max(P1(:))])])
     
             figure;
@@ -164,15 +165,16 @@ for ii=1:(N-1)
             for u=1:U
                 subplot(2,U,u);
                 imagesc(reshape(Au(u,:),nRow,nCol),[0,1]);
-                title(['(a) Ground-truth' cood(UnknownEM(u))])
+                title(['(a) Ground-truth' cood(UnknownEM(u))], 'FontWeight','normal')
                 subplot(2,U,u+U);
                 imagesc(reshape(A1u(u,:),nRow,nCol),[0,1]);
-                title(['(b) Estimation' num2str(u) '-th'])
+                title(['(b) Unknown-' num2str(u)], 'FontWeight','normal')
             end
+            subplot(2,2,1); colorbar('southoutside')
         end
     end
 end
-%%
+
 disp('%%%%%%%%%%%%%%%%%%%')
 disp('Peformance Metrics')
 disp('NEBEAE-Sup            NESSEAE               NEBEAE')
