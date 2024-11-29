@@ -103,50 +103,49 @@ tic
     a5_5 = reshape(Afull(5,:),Ny,Nx); 
 
 %%
+v1=0.855;
+v2=0.635;
+v3=0.415;
+v4=0.195;
+h1=0.27;
+h2=0.65;
 figure(1)
 clf()
 
-% Create a 4x5 tiled layout for uniform sizing and control over spacing
-t = tiledlayout(4, 6);
-
-% First row (1x2 layout, center the images)
-nexttile(1); 
+subplot(4,8,[1,2,3])
 hold on;
 grid on;
-plot(wl, Po2n(:,1), 'LineWidth', 2, 'color', 'r');
-plot(wl, Po2n(:,2), 'LineWidth', 2, 'color', 'b');
+plot(wl, P3(:,1), 'LineWidth', 2, 'color', 'r');
+plot(wl, P3(:,2), 'LineWidth', 2, 'color', 'b');
+plot(wl,P3(:,3),'color','w');
 axis tight;
 xlabel('Wavelength (nm)')
 ylabel('Normalized intensity')
-legend({'Eosin', 'Hematoxylin'} );
-text(0.5, 1.11, '(a)', 'Units', 'normalized', 'fontsize', 14, 'HorizontalAlignment', 'center', 'VerticalAlignment', 'middle' );
+legend({'Eosin', 'Hematoxylin'},"Location","southeast");
+annotation('textbox', [h1, v1, 0.1, 0.1], 'string', '(a)', 'FontSize', 14, 'FontWeight', 'normal', 'EdgeColor', 'none');
 
-% Second row (N=2)
-nexttile(2); imshow(a2_1); title('Eosin'); axis 'off';
-text(1.1, 1.2, '(b)', 'Units', 'normalized', 'fontsize', 14, 'HorizontalAlignment', 'center', 'VerticalAlignment', 'middle' );
-nexttile(3); imshow(a2_2); title('Hematoxylin'); axis 'off';
+subplot(4,8,4); imagesc(a2_1); title('Eosin');   axis off;
+subplot(4,8,5); imagesc(a2_2); title('Hematoxylin'); axis 'off';
+annotation('textbox', [h2, v1, 0.1, 0.1], 'string', '(b)', 'FontSize', 14, 'FontWeight', 'normal', 'EdgeColor', 'none');
 
-
-% Second row (N=3) - center the images by manually spanning columns
-nexttile(7);
+subplot(4,8,[9,10,11]);
 hold on;
 grid on;
 plot(wl, P3(:,1), 'LineWidth', 2, 'color', 'r');
 plot(wl, P3(:,2), 'LineWidth', 2, 'color', 'b');
 plot(wl, P3(:,3), '-.', 'LineWidth', 2, 'color', 'g');
 axis tight;
-legend({'Eosin', 'Hematoxylin', 'Unknown-1'} );
+legend({'Eosin', 'Hematoxylin', 'Unknown-1'} ,"Location","southeast");
 xlabel('Wavelength (nm)')
 ylabel('Normalized intensity')
-text(0.5, 1.1, '(c)', 'Units', 'normalized', 'FontSize', 14,  'HorizontalAlignment', 'center', 'VerticalAlignment', 'middle' );
+annotation('textbox', [h1, v2, 0.1, 0.1], 'string', '(c)', 'FontSize', 14, 'FontWeight', 'normal', 'EdgeColor', 'none');
 
-nexttile(8); imshow(a3_1);  title('Eosin'); axis 'off';
-nexttile(9); imshow(a3_2);  title('Hematoxylin'); axis 'off';
-text(.5, 1.2, '(d)', 'Units', 'normalized', 'fontsize', 14, 'HorizontalAlignment', 'center', 'VerticalAlignment', 'middle' );
-nexttile(10); imshow(a3_3);  title('Unknown-1');axis 'off';
- 
-% Third row (N=4)
-nexttile(13);
+subplot(4,8,12); imagesc(a3_1);  title('Eosin'); axis 'off';
+subplot(4,8,13); imagesc(a3_2);  title('Hematoxylin'); axis 'off';
+subplot(4,8,14); imagesc(a3_3);  title('Unknown-1');axis 'off';
+annotation('textbox', [h2, v2+0.015, 0.1, 0.1], 'string', '(d)', 'FontSize', 14, 'FontWeight', 'normal', 'EdgeColor', 'none');
+
+subplot(4,8,[17,18,19])
 hold on
 grid on
 plot(wl, P4(:,1), 'LineWidth', 2, 'color', 'r');
@@ -155,19 +154,18 @@ plot(wl, P4(:,3), '-.', 'LineWidth', 2, 'color', 'g');
 plot(wl, P4(:,4), '-.', 'LineWidth', 2, 'color', 'k');
 hold off
 axis tight;
-legend({'Eosin', 'Hematoxylin', 'Unknown-1', 'Unknown-2'} );
+legend({'Eosin', 'Hematoxylin', 'Unknown-1', 'Unknown-2'} ,"Location","southeast");
 xlabel('Wavelength (nm)')
 ylabel('Normalized intensity')
-text(0.5, 1.11, '(e)', 'Units', 'normalized', 'FontSize', 14, 'HorizontalAlignment', 'center', 'VerticalAlignment', 'middle' );
+annotation('textbox', [h1, v3, 0.1, 0.1], 'string', '(e)', 'FontSize', 14, 'FontWeight', 'normal', 'EdgeColor', 'none');
 
-nexttile(14); imshow(a4_2);  title('Eosin'); axis 'off';
-nexttile(15); imshow(a4_1); title('Hematoxylin'); axis 'off';
-text(1.1, 1.2, '(f)', 'Units', 'normalized', 'fontsize', 14, 'HorizontalAlignment', 'center', 'VerticalAlignment', 'middle' );
-nexttile(16); imshow(a4_3); title('Unknown-1'); axis 'off';
-nexttile(17); imshow(a4_4); title('Unknown-2'); axis 'off'; 
-
-% Fourth row (N=5)
-nexttile(19)
+subplot(4,8,20); imagesc(a4_2);  title('Eosin'); axis 'off';
+subplot(4,8,21); imagesc(a4_1); title('Hematoxylin'); axis 'off';
+subplot(4,8,22); imagesc(a4_3); title('Unknown-1'); axis 'off';
+subplot(4,8,23); imagesc(a4_4); title('Unknown-2'); axis 'off'; 
+annotation('textbox', [h2, 0.43, 0.1, 0.1], 'string', '(f)', 'FontSize', 14, 'FontWeight', 'normal', 'EdgeColor', 'none');
+% 
+subplot(4,8,[25,26,27])
 hold on;
 grid on;
 plot(wl, P5(:,1), 'LineWidth', 2, 'color', 'r');
@@ -176,21 +174,23 @@ plot(wl, P5(:,3), '-.', 'LineWidth', 2, 'color', 'g');
 plot(wl, P5(:,4), '-.', 'LineWidth', 2, 'color', 'k');
 plot(wl, P5(:,5), '-.', 'LineWidth', 2, 'color', 'm');
 axis tight;
-legend({'Eosin', 'Hematoxylin', 'Unknown-1', 'Unknown-2','Unknown-3'} );
+legend({'Eosin', 'Hematoxylin', 'Unknown-1', 'Unknown-2','Unknown-3'},"Location","northwest" );
 xlabel('Wavelength (nm)')
 ylabel('Normalized intensity')
-text(0.5, 1.11, '(g)', 'Units', 'normalized', 'FontSize', 14,  'HorizontalAlignment', 'center', 'VerticalAlignment', 'middle' );
+annotation('textbox', [h1, v4, 0.1, 0.1], 'string', '(g)', 'FontSize', 14, 'FontWeight', 'normal', 'EdgeColor', 'none');
 
 
 
-nexttile(20); imshow(a5_1); title('Eosin'); axis 'off';
-nexttile(21); imshow(a5_2); title('Hematoxylin');  axis 'off';
-nexttile(22); imshow(a5_3); title('Unknown-1');axis 'off';
-text(.5, 1.2, '(h)', 'Units', 'normalized', 'fontsize', 14, 'HorizontalAlignment', 'center', 'VerticalAlignment', 'middle' );
-nexttile(23); imshow(a5_4); title('Unknown-2'); axis 'off';
-nexttile(24); imshow(a5_5); title('Unknown-3'); axis 'off';
+subplot(4,8,28); imagesc(a5_1); title('Eosin'); axis 'off';
+subplot(4,8,29); imagesc(a5_2); title('Hematoxylin');  axis 'off';
+subplot(4,8,30); imagesc(a5_3); title('Unknown-1');axis 'off';
+subplot(4,8,31); imagesc(a5_4); title('Unknown-2'); axis 'off';
+subplot(4,8,32); imagesc(a5_5); title('Unknown-3'); axis 'off';
+annotation('textbox', [h2, 0.16, 0.1, 0.15], 'string', '(h)', 'FontSize', 14, 'FontWeight', 'normal', 'EdgeColor', 'none');
+ 
 
 % Create a general colorbar that spans from the second to the fourth rows
- cb = colorbar('Position', [0.96 0.1 0.01 0.8]);  % Manually position the colorbar
+cb = colorbar('Position', [0.91 0.11 0.01 0.815]);  % Manually position the colorbar
 cb.Label.FontSize = 14;
 colormap parula;
+%%
