@@ -38,18 +38,17 @@ Urban = imread('UrbanRGB.png');
 Fs=14;
 figure(1)
 clf
-subplot(131)
+subplot(221)
 imshow(Synth_lmm);
-title('(a)','FontSize', Fs)
+title('(a)','FontSize', Fs, 'FontWeigh','normal')
 axis('off')
 
-subplot(132)
-imagesc(Hist)
-title('(b)','FontSize', Fs)
+subplot(122)
+imshow(imrotate(Hist,90))
+title('(b)','FontSize', Fs,'FontWeigh','normal')
 axis 'off';
 
-subplot(133)
+subplot(223)
 imshow(Urban);
-title('(c)','FontSize', Fs)
+title('(c)','FontSize',Fs, 'FontWeigh','normal')
 axis 'off'
-
